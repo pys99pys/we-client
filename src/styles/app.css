@@ -1,0 +1,11 @@
+@import "./reset.css";
+@import "./variable.css";
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: "NanumBarunGothic";
+  font-size: 1rem;
+}
