@@ -60,7 +60,10 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
         </div>
       </div>
       <div className={css.ownerWrap}>
-        <OwnerIcon owners={owners} />
+        <OwnerIcon
+          together={owners.length === 2}
+          owner={owners.length === 1 ? owners[0] : undefined}
+        />
       </div>
     </li>
   );

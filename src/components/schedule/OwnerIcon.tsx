@@ -3,17 +3,15 @@ import { Owner } from "../../models/client/Owner";
 import css from "./OwnerIcon.module.css";
 
 interface OwnerIconProps {
-  owners: Owner[];
+  together: boolean;
+  owner?: Owner;
 }
 
-const OwnerIcon: FC<OwnerIconProps> = ({ owners }) => {
+const OwnerIcon: FC<OwnerIconProps> = ({ together, owner }) => {
   return (
-    <span
-      data-id={owners.length === 1 && owners[0].id % 5}
-      className={css.OwnerIcon}
-    >
-      {owners.length === 2 && "함께"}
-      {owners.length === 1 && owners[0].name}
+    <span data-id={together ? undefined : owner?.id} className={css.OwnerIcon}>
+      {together && "함께"}
+      {!together && (owner?.name || "")}
     </span>
   );
 };
