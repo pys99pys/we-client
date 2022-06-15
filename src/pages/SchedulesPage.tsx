@@ -1,6 +1,6 @@
 import { FC } from "react";
 import SchedulesPageTemplate from "../components/template/SchedulesPageTemplate";
-import TabContainer from "../containers/tab/TabContainer";
+import TabContainer from "../containers/TabContainer";
 
 interface SchedulesPageProps {}
 

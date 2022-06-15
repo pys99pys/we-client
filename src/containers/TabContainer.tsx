@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useRecoilState } from "recoil";
-import { selectedTabState } from "../../stores/tabStore";
-import { TabDivision } from "../../models/client/Tab";
-import TabList from "../../components/tab/TabList";
+import { selectedTabState } from "../stores/tabStore";
+import { TabDivision } from "../models/client/Tab";
+import TabList from "../components/tab/TabList";
 
 interface TabContainerProps {}
 
