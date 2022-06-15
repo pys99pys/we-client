@@ -8,10 +8,8 @@
 }
 
 .header svg {
-  height: 1em;
+  height: 0.85em;
   margin-left: 0.25rem;
-  position: relative;
-  top: -1px;
   fill: var(--color-red);
 }
 

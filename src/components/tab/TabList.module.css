@@ -1,0 +1,22 @@
+.TabList {
+  display: flex;
+}
+
+.TabList li {
+  flex: 1;
+  padding: 1.5rem 0;
+  text-align: center;
+  color: var(--color-gray4);
+  transition: background-color 500ms, color 500ms;
+}
+
+.TabList li.active {
+  border-bottom: 3px solid var(--color-primary);
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.TabList li:not(.active):hover {
+  background-color: var(--color-gray7);
+  cursor: pointer;
+}

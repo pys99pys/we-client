@@ -6,6 +6,8 @@ html {
 }
 
 body {
-  font-family: "NanumBarunGothic";
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 1rem;
+  background-color: var(--color-gray9);
+  color: var(--color-black);
 }
