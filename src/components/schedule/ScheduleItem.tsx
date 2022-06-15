@@ -24,6 +24,9 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
     <li className={css.ScheduleItem}>
       <div className={css.checkboxWrap}>
         <svg
+          className={cx(css.checkboxIcon, {
+            [css.isCompleted]: !!completedAt,
+          })}
           width="24"
           height="24"
           fill="none"
