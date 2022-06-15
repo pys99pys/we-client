@@ -1,0 +1,21 @@
+.OwnerIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #ede9fe;
+  color: #4c1d95;
+  font-size: 0.8rem;
+}
+
+.OwnerIcon[data-id="1"] {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+}
+
+.OwnerIcon[data-id="2"] {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+}

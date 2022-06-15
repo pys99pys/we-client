@@ -1,0 +1,7 @@
+.Tag {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: var(--color-gray7);
+  font-size: 0.8rem;
+  color: var(--color-gray2);
+}

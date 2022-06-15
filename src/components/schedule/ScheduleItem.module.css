@@ -1,0 +1,41 @@
+.ScheduleItem {
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-gray7);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 5px var(--color-gray7);
+  background-color: var(--color-white);
+}
+
+.ScheduleItem .checkboxWrap svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: var(--color-gray6);
+}
+
+.ScheduleItem .contentWrap {
+  flex: 1;
+  padding: 0 1.5rem;
+}
+
+.ScheduleItem .contentWrap h6 {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.ScheduleItem .contentWrap .dateWrap {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-gray4);
+}
+
+.ScheduleItem .contentWrap .dateWrap .dueAt.isCompleted {
+  text-decoration: line-through;
+}
+
+.ScheduleItem .contentWrap .tagWrap {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.25rem;
+}
