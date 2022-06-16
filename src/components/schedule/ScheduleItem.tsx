@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cx from "classnames";
-import { Schedule } from "../../models/client/Schedule";
+import { Schedule } from "../../models/server/Schedule";
 import OwnerIcon from "./OwnerIcon";
 import css from "./ScheduleItem.module.css";
 import Tag from "./Tag";
@@ -8,7 +8,7 @@ import Tag from "./Tag";
 interface ScheduleItemProps {
   title: Schedule["title"];
   tags: Schedule["tags"];
-  owners: Schedule["owners"];
+  userIds: Schedule["userIds"];
   completedAt: Schedule["completedAt"];
   dueAt: Schedule["dueAt"];
 }
@@ -16,7 +16,7 @@ interface ScheduleItemProps {
 const ScheduleItem: FC<ScheduleItemProps> = ({
   title,
   tags,
-  owners,
+  userIds,
   completedAt,
   dueAt,
 }) => {
@@ -24,9 +24,7 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
     <li className={css.ScheduleItem}>
       <div className={css.checkboxWrap}>
         <svg
-          className={cx(css.checkboxIcon, {
-            [css.isCompleted]: !!completedAt,
-          })}
+          className={cx(css.checkboxIcon, { [css.isCompleted]: !!completedAt })}
           width="24"
           height="24"
           fill="none"
@@ -38,21 +36,21 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
       </div>
       <div className={css.contentWrap}>
         <h6>{title}</h6>
-        {(!!completedAt || !!dueAt) && (
+        {
           <div className={css.dateWrap}>
-            {!!dueAt && (
+            {
               <span
                 className={cx(css.dueAt, {
                   [css.isCompleted]: !!completedAt,
                 })}
               >
-                {dueAt.substring(0, 16)} 일정
+                {dueAt ? `${dueAt.substring(0, 16)} 일정` : "일정 미정"}
               </span>
-            )}
+            }
             {!!completedAt && !!dueAt && " / "}
             {!!completedAt && <span className={cx(css.completedAt)}>완료</span>}
           </div>
-        )}
+        }
         <div className={css.tagWrap}>
           {tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
@@ -60,10 +58,7 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
         </div>
       </div>
       <div className={css.ownerWrap}>
-        <OwnerIcon
-          together={owners.length === 2}
-          owner={owners.length === 1 ? owners[0] : undefined}
-        />
+        <OwnerIcon userId={userIds.length === 1 ? userIds[0] : null} />
       </div>
     </li>
   );

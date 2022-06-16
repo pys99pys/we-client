@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Schedule } from "../../models/client/Schedule";
+
+import { Schedule } from "../../models/server/Schedule";
 import ScheduleItem from "./ScheduleItem";
 import css from "./ScheduleList.module.css";
 
@@ -15,7 +16,7 @@ const ScheduleList: FC<ScheduleListProps> = ({ items }) => {
           key={item.id}
           title={item.title}
           tags={item.tags}
-          owners={item.owners}
+          userIds={item.userIds}
           completedAt={item.completedAt}
           dueAt={item.dueAt}
         />

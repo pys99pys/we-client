@@ -1,17 +1,29 @@
 import { FC } from "react";
-import { Owner } from "../../models/client/Owner";
 import css from "./OwnerIcon.module.css";
 
 interface OwnerIconProps {
-  together: boolean;
-  owner?: Owner;
+  userId: number | null;
 }
 
-const OwnerIcon: FC<OwnerIconProps> = ({ together, owner }) => {
+const getUserName = (userId: number) => {
+  switch (userId) {
+    case 1:
+      return "박윤서";
+    case 2:
+      return "홍우정";
+    default:
+      return "";
+  }
+};
+
+const OwnerIcon: FC<OwnerIconProps> = ({ userId }) => {
   return (
-    <span data-id={together ? undefined : owner?.id} className={css.OwnerIcon}>
-      {together && "함께"}
-      {!together && (owner?.name || "")}
+    <span
+      data-id={userId === null ? undefined : userId}
+      className={css.OwnerIcon}
+    >
+      {userId === null && "함께"}
+      {userId !== null && getUserName(userId)}
     </span>
   );
 };
