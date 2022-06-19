@@ -1,0 +1,39 @@
+.Radio {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-gray4);
+  transition: transform 300ms ease;
+}
+
+.Radio:not(.checked):hover {
+  transform: scale(1.1);
+}
+
+.Radio span {
+  transform: translateY(2px);
+  font-size: 1.75rem;
+}
+
+.Radio span:hover {
+  cursor: pointer;
+}
+
+.Radio label {
+  padding-left: 0.1rem;
+}
+
+.Radio label:hover {
+  cursor: pointer;
+}
+
+.Radio.checked span {
+  color: var(--color-primary);
+}
+
+.Radio.checked label {
+  color: var(--color-black);
+}
+
+.group .Radio + .Radio {
+  margin-left: 1.25rem;
+}

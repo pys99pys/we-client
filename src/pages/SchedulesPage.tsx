@@ -8,8 +8,8 @@ interface SchedulesPageProps {}
 const SchedulesPage: FC<SchedulesPageProps> = () => {
   return (
     <SchedulesPageTemplate
-      tabContainer={<TabContainer />}
-      scheduleListContainer={<ScheduleListContainer />}
+      tabArea={<TabContainer />}
+      scheduleListArea={<ScheduleListContainer />}
     />
   );
 };

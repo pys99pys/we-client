@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import cx from "classnames";
 import { Schedule } from "../../models/server/Schedule";
@@ -14,6 +14,7 @@ interface ScheduleItemProps {
   completedAt: Schedule["completedAt"];
   dueAt: Schedule["dueAt"];
   onClickCheckbox: () => void;
+  onClickItem: () => void;
 }
 
 const ScheduleItem: FC<ScheduleItemProps> = ({
@@ -23,10 +24,16 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
   completedAt,
   dueAt,
   onClickCheckbox,
+  onClickItem,
 }) => {
+  const handleClickCheckbox = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    onClickCheckbox();
+  };
+
   return (
-    <li className={css.ScheduleItem}>
-      <div className={css.checkboxWrap} onClick={onClickCheckbox}>
+    <li className={css.ScheduleItem} onClick={onClickItem}>
+      <div className={css.checkboxWrap} onClick={handleClickCheckbox}>
         <div className={css.checkboxIcon}>
           <Icon hoverable color={!!completedAt ? "primary" : "lightGray"}>
             <BsFillCheckCircleFill />

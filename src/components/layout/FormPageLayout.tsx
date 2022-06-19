@@ -10,7 +10,7 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({ title, children }) => {
   return (
     <div className={css.FormPageLayout}>
       <h1>{title}</h1>
-      {children}
+      <div className={css.container}>{children}</div>
     </div>
   );
 };

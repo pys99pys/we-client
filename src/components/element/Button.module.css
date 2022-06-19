@@ -1,13 +1,22 @@
-.Button.primary {
-  height: 2.75rem;
+.Button.large {
+  height: var(--input-button-height-large);
+  padding: 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+.primary {
+  height: var(--input-button-height-base);
   padding: 0 1rem;
   display: inline-flex;
   align-items: center;
   border: none;
   border-radius: var(--border-radius);
+  transition: background-color 500ms ease;
+}
+
+.Button.primary {
   background-color: var(--color-primary);
   color: var(--color-white);
-  transition: background-color 500ms ease;
 }
 
 .Button.primary:hover {

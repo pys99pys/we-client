@@ -4,13 +4,13 @@ import css from "./SchedulesPageTemplate.module.css";
 import { FaPlus } from "react-icons/fa";
 
 interface SchedulesPageTemplateProps {
-  tabContainer: ReactNode;
-  scheduleListContainer: ReactNode;
+  tabArea: ReactNode;
+  scheduleListArea: ReactNode;
 }
 
 const SchedulesPageTemplate: FC<SchedulesPageTemplateProps> = ({
-  tabContainer,
-  scheduleListContainer,
+  tabArea: tabContainer,
+  scheduleListArea: scheduleListContainer,
 }) => {
   return (
     <>
