@@ -10,11 +10,13 @@ const Group: FC<{ children: ReactNode }> = ({ children }) => {
 
 interface RadioProps {
   checked: boolean;
+  onClick?: () => void;
   children?: ReactNode;
 }
 
 const Radio: FC<RadioProps> & { Group: typeof Group } = ({
   checked,
+  onClick,
   children,
 }) => {
   return (
@@ -22,6 +24,7 @@ const Radio: FC<RadioProps> & { Group: typeof Group } = ({
       className={cx(css.Radio, {
         [css.checked]: checked,
       })}
+      onClick={onClick}
     >
       <span>
         <Icon>

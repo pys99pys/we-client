@@ -2,16 +2,16 @@
   display: inline-flex;
   align-items: center;
   color: var(--color-gray4);
-  transition: transform 300ms ease;
 }
 
 .Radio:not(.checked):hover {
-  transform: scale(1.1);
+  color: var(--color-gray3);
 }
 
 .Radio span {
   transform: translateY(2px);
   font-size: 1.75rem;
+  transition: color 300ms ease;
 }
 
 .Radio span:hover {
@@ -20,6 +20,7 @@
 
 .Radio label {
   padding-left: 0.1rem;
+  transition: color 300ms ease;
 }
 
 .Radio label:hover {
