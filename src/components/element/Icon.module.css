@@ -1,0 +1,25 @@
+.Icon {
+  width: 100%;
+  height: 100%;
+}
+
+.Icon.hoverable {
+  transition: fill 500ms ease;
+  cursor: pointer;
+}
+
+.Icon.primary {
+  fill: var(--color-primary);
+}
+
+.Icon.primary.hoverable:hover {
+  fill: var(--color-primary-hover);
+}
+
+.Icon.lightGray {
+  fill: var(--color-gray6);
+}
+
+.Icon.lightGray.hoverable:hover {
+  fill: var(--color-gray5);
+}

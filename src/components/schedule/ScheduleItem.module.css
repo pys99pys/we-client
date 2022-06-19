@@ -11,21 +11,6 @@
 .ScheduleItem .checkboxWrap .checkboxIcon {
   width: 2.5rem;
   height: 2.5rem;
-  fill: var(--color-gray6);
-  transition: fill 500ms ease;
-}
-
-.ScheduleItem .checkboxWrap .checkboxIcon:hover {
-  fill: var(--color-gray5);
-  cursor: pointer;
-}
-
-.ScheduleItem .checkboxWrap .checkboxIcon.isCompleted {
-  fill: var(--color-primary);
-}
-
-.ScheduleItem .checkboxWrap .checkboxIcon.isCompleted:hover {
-  fill: var(--color-primary-hover);
 }
 
 .ScheduleItem .contentWrap {
