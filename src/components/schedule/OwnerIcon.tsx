@@ -8,9 +8,9 @@ interface OwnerIconProps {
 const getUserName = (userId: number) => {
   switch (userId) {
     case 1:
-      return "박윤서";
+      return "윤서";
     case 2:
-      return "홍우정";
+      return "우정";
     default:
       return "";
   }
