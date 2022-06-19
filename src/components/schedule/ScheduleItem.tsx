@@ -11,6 +11,7 @@ interface ScheduleItemProps {
   userIds: Schedule["userIds"];
   completedAt: Schedule["completedAt"];
   dueAt: Schedule["dueAt"];
+  onClickCheckbox: () => void;
 }
 
 const ScheduleItem: FC<ScheduleItemProps> = ({
@@ -19,10 +20,11 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
   userIds,
   completedAt,
   dueAt,
+  onClickCheckbox,
 }) => {
   return (
     <li className={css.ScheduleItem}>
-      <div className={css.checkboxWrap}>
+      <div className={css.checkboxWrap} onClick={onClickCheckbox}>
         <svg
           className={cx(css.checkboxIcon, { [css.isCompleted]: !!completedAt })}
           width="24"
@@ -47,8 +49,10 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
                 {dueAt ? `${dueAt.substring(0, 16)} 일정` : "일정 미정"}
               </span>
             }
-            {!!completedAt && !!dueAt && " / "}
-            {!!completedAt && <span className={cx(css.completedAt)}>완료</span>}
+
+            {!!completedAt && (
+              <span className={cx(css.completedAt)}>{" / 완료"}</span>
+            )}
           </div>
         }
         <div className={css.tagWrap}>

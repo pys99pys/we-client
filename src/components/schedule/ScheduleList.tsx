@@ -6,9 +6,10 @@ import css from "./ScheduleList.module.css";
 
 interface ScheduleListProps {
   items: Schedule[];
+  onComplete: (id: number) => void;
 }
 
-const ScheduleList: FC<ScheduleListProps> = ({ items }) => {
+const ScheduleList: FC<ScheduleListProps> = ({ items, onComplete }) => {
   return (
     <ul className={css.ScheduleList}>
       {items.map((item) => (
@@ -19,6 +20,7 @@ const ScheduleList: FC<ScheduleListProps> = ({ items }) => {
           userIds={item.userIds}
           completedAt={item.completedAt}
           dueAt={item.dueAt}
+          onClickCheckbox={() => onComplete(item.id)}
         />
       ))}
     </ul>
