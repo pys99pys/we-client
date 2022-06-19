@@ -6,7 +6,8 @@ const UPDATE_SCHEDULE = gql`
     $id: Float!
     $title: String!
     $content: String!
-    $dueAt: String!
+    $dueAt: String
+    $completedAt: String
     $tags: [String!]!
     $userIds: [Float!]!
   ) {
@@ -16,6 +17,7 @@ const UPDATE_SCHEDULE = gql`
         title: $title
         content: $content
         dueAt: $dueAt
+        completedAt: $completedAt
         tags: $tags
         userIds: $userIds
       }
@@ -38,7 +40,8 @@ export const useUpdateScheduleMutation = () => {
       id: number;
       title: string;
       content: string;
-      dueAt: string;
+      dueAt: string | null;
+      completedAt: string | null;
       tags: string[];
       userIds: number[];
     }

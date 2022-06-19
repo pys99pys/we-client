@@ -44,6 +44,13 @@ const ScheduleForm: FC<ScheduleFormProps> = ({
           onChange={(value) => onChange("dueAt", value)}
         />
       </Form.Row>
+      <Form.Row title="일정 완료일">
+        <Input
+          type="date"
+          value={form.completedAt}
+          onChange={(value) => onChange("completedAt", value)}
+        />
+      </Form.Row>
       <Form.Row title="소유자">
         <Radio.Group>
           <Radio

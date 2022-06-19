@@ -14,6 +14,7 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
 
   const [form, setForm] = useState<Form>({
     dueAt: "",
+    completedAt: "",
     title: "",
     tags: "",
     userIds: [],
@@ -21,6 +22,7 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
 
   const [errors, setErrors] = useState<Record<keyof Form, boolean>>({
     dueAt: false,
+    completedAt: false,
     title: false,
     tags: false,
     userIds: false,
@@ -44,7 +46,8 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
           id: Number(id),
           title: form.title,
           content: "",
-          dueAt: form.dueAt,
+          dueAt: form.dueAt || null,
+          completedAt: form.completedAt || null,
           tags: form.tags.split(", "),
           userIds: form.userIds,
         },
@@ -56,6 +59,7 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     if (data?.getSchedule) {
       setForm({
         dueAt: data.getSchedule.dueAt || "",
+        completedAt: data.getSchedule.completedAt || "",
         title: data.getSchedule.title,
         tags: data.getSchedule.tags.join(", "),
         userIds: data.getSchedule.userIds,
