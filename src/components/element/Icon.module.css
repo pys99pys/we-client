@@ -4,22 +4,22 @@
 }
 
 .Icon.hoverable {
-  transition: fill 500ms ease;
+  transition: color 500ms ease;
   cursor: pointer;
 }
 
 .Icon.primary {
-  fill: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .Icon.primary.hoverable:hover {
-  fill: var(--color-primary-hover);
+  color: var(--color-primary-hover);
 }
 
 .Icon.lightGray {
-  fill: var(--color-gray6);
+  color: var(--color-gray6);
 }
 
 .Icon.lightGray.hoverable:hover {
-  fill: var(--color-gray5);
+  color: var(--color-gray5);
 }
