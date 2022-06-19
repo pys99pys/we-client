@@ -3,17 +3,52 @@ import { useParams } from "react-router-dom";
 import { useGetScheduleQuery } from "../queries/getSchedule";
 import { Form } from "../models/client/Form";
 import ScheduleForm from "../components/schedule/ScheduleForm";
+import { useUpdateScheduleMutation } from "../queries/updateSchedule";
 
 interface ScheduleUpdateContainerProps {}
 
 const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
   const { id } = useParams<{ id: string }>();
   const { data } = useGetScheduleQuery(Number(id));
-  const [form, setForm] = useState<Form | null>(null);
+  const [fetchUpdate] = useUpdateScheduleMutation();
+
+  const [form, setForm] = useState<Form>({
+    dueAt: "",
+    title: "",
+    tags: "",
+    userIds: [],
+  });
+
+  const [errors, setErrors] = useState<Record<keyof Form, boolean>>({
+    dueAt: false,
+    title: false,
+    tags: false,
+    userIds: false,
+  });
 
   const handleChange = (key: keyof Form, value: Form[keyof Form]) => {
     if (form !== null) {
       setForm({ ...form, [key]: value });
+    }
+  };
+
+  const handleSubmit = () => {
+    setErrors({
+      ...errors,
+      title: !form.title,
+    });
+
+    if (form.title) {
+      fetchUpdate({
+        variables: {
+          id: Number(id),
+          title: form.title,
+          content: "",
+          dueAt: form.dueAt,
+          tags: form.tags.split(", "),
+          userIds: form.userIds,
+        },
+      });
     }
   };
 
@@ -28,7 +63,14 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     }
   }, [data]);
 
-  return form && <ScheduleForm form={form} onChange={handleChange} />;
+  return data ? (
+    <ScheduleForm
+      form={form}
+      errors={errors}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+    />
+  ) : null;
 };
 
 export default ScheduleUpdateContainer;

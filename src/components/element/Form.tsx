@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import React, { FC, FormEvent, ReactNode } from "react";
 import css from "./Form.module.css";
 
 const ButtonArea: FC<{ children: ReactNode }> = ({ children }) => {
@@ -22,14 +22,24 @@ const Row: FC<{ title: string; children: ReactNode }> = ({
 };
 
 interface FormProps {
+  onSubmit?: () => void;
   children: ReactNode;
 }
 
 const Form: FC<FormProps> & {
   ButtonArea: typeof ButtonArea;
   Row: typeof Row;
-} = ({ children }) => {
-  return <form className={css.Form}>{children}</form>;
+} = ({ onSubmit, children }) => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onSubmit?.();
+  };
+
+  return (
+    <form className={css.Form} onSubmit={handleSubmit}>
+      {children}
+    </form>
+  );
 };
 
 Form.ButtonArea = ButtonArea;

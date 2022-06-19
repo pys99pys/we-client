@@ -1,22 +1,31 @@
 import { FC } from "react";
 import { FaCheck } from "react-icons/fa";
+import { Form as FormType } from "../../models/client/Form";
 import Form from "../element/Form";
 import Input from "../element/Input";
 import Button from "../element/Button";
 import Radio from "../element/Radio";
-import { Form as FormType } from "../../models/client/Form";
 
 interface ScheduleFormProps {
   form: FormType;
+  errors: Record<keyof FormType, boolean>;
   onChange: (key: keyof FormType, value: FormType[keyof FormType]) => void;
+  onSubmit: () => void;
 }
 
-const ScheduleForm: FC<ScheduleFormProps> = ({ form, onChange }) => {
+const ScheduleForm: FC<ScheduleFormProps> = ({
+  form,
+  errors,
+  onChange,
+  onSubmit,
+}) => {
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <Form.Row title="일정 제목">
         <Input
           placeholder="일정의 제목을 입력해주세요."
+          isError={errors.title}
+          errorMessage="일정 제목은 반드시 입력되어야 합니다."
           value={form.title}
           onChange={(value) => onChange("title", value)}
         />
@@ -58,7 +67,12 @@ const ScheduleForm: FC<ScheduleFormProps> = ({ form, onChange }) => {
         </Radio.Group>
       </Form.Row>
       <Form.ButtonArea>
-        <Button size="large" icon={<FaCheck />} color="primary">
+        <Button
+          size="large"
+          icon={<FaCheck />}
+          color="primary"
+          onClick={onSubmit}
+        >
           일정 수정
         </Button>
       </Form.ButtonArea>

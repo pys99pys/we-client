@@ -6,10 +6,11 @@ interface ButtonProps {
   size?: "large" | "small";
   icon?: ReactNode;
   color?: "primary";
+  onClick?: () => void;
   children?: ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ size, icon, color, children }) => {
+const Button: FC<ButtonProps> = ({ size, icon, color, onClick, children }) => {
   return (
     <button
       type="button"
@@ -18,6 +19,7 @@ const Button: FC<ButtonProps> = ({ size, icon, color, children }) => {
         [css.small]: size === "small",
         [css.primary]: color === "primary",
       })}
+      onClick={onClick}
     >
       {icon && <span className={css.iconWrap}>{icon}</span>}
       {children}
