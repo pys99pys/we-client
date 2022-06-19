@@ -1,0 +1,21 @@
+.Button.primary {
+  height: 2.75rem;
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: background-color 500ms ease;
+}
+
+.Button.primary:hover {
+  background-color: var(--color-primary-hover);
+  cursor: pointer;
+}
+
+.Button .iconWrap {
+  margin-right: 0.25rem;
+  transform: translateY(1px);
+}

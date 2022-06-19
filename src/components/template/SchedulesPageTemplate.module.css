@@ -1,3 +1,7 @@
-.scheduleList {
+.containerWrap {
   margin-top: 2rem;
+}
+
+.containerWrap .scheduleListWrap {
+  margin-top: 1rem;
 }
