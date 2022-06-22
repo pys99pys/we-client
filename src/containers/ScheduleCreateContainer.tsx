@@ -1,22 +1,18 @@
-import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useGetScheduleQuery } from "../queries/getSchedule";
-import { useUpdateScheduleMutation } from "../queries/updateSchedule";
+import { FC, useState } from "react";
+import { useCreateScheduleMutation } from "../queries/createSchedule";
 import { Form } from "../models/client/Form";
-import ScheduleForm from "../components/schedule/ScheduleUpdateForm";
+import ScheduleCreateForm from "../components/schedule/ScheduleCreateForm";
 
 interface ScheduleUpdateContainerProps {}
 
 const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data } = useGetScheduleQuery(Number(id));
-  const [fetchUpdate] = useUpdateScheduleMutation();
+  const [fetchCreate] = useCreateScheduleMutation();
 
   const [form, setForm] = useState<Form>({
-    dueAt: "",
+    dueAt: new Date().toISOString().substring(0, 10),
     title: "",
     tags: "",
-    userIds: [],
+    userIds: [1, 2],
   });
 
   const [errors, setErrors] = useState<Record<keyof Form, boolean>>({
@@ -39,9 +35,8 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     });
 
     if (form.title) {
-      fetchUpdate({
+      fetchCreate({
         variables: {
-          id: Number(id),
           title: form.title,
           content: "",
           dueAt: form.dueAt || null,
@@ -52,25 +47,14 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     }
   };
 
-  useEffect(() => {
-    if (data?.getSchedule) {
-      setForm({
-        dueAt: data.getSchedule.dueAt || "",
-        title: data.getSchedule.title,
-        tags: data.getSchedule.tags.join(", "),
-        userIds: data.getSchedule.userIds,
-      });
-    }
-  }, [data]);
-
-  return data ? (
-    <ScheduleForm
+  return (
+    <ScheduleCreateForm
       form={form}
       errors={errors}
       onChange={handleChange}
       onSubmit={handleSubmit}
     />
-  ) : null;
+  );
 };
 
 export default ScheduleUpdateContainer;

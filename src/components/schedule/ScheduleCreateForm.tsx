@@ -1,19 +1,19 @@
 import { FC } from "react";
-import { FaCheck } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { Form as FormType } from "../../models/client/Form";
 import Form from "../element/Form";
 import Input from "../element/Input";
 import Button from "../element/Button";
 import Radio from "../element/Radio";
 
-interface ScheduleFormProps {
+interface ScheduleCreateFormProps {
   form: FormType;
   errors: Record<keyof FormType, boolean>;
   onChange: (key: keyof FormType, value: FormType[keyof FormType]) => void;
   onSubmit: () => void;
 }
 
-const ScheduleForm: FC<ScheduleFormProps> = ({
+const ScheduleCreateForm: FC<ScheduleCreateFormProps> = ({
   form,
   errors,
   onChange,
@@ -44,13 +44,6 @@ const ScheduleForm: FC<ScheduleFormProps> = ({
           onChange={(value) => onChange("dueAt", value)}
         />
       </Form.Row>
-      <Form.Row title="일정 완료일">
-        <Input
-          type="date"
-          value={form.completedAt}
-          onChange={(value) => onChange("completedAt", value)}
-        />
-      </Form.Row>
       <Form.Row title="소유자">
         <Radio.Group>
           <Radio
@@ -76,15 +69,15 @@ const ScheduleForm: FC<ScheduleFormProps> = ({
       <Form.ButtonArea>
         <Button
           size="large"
-          icon={<FaCheck />}
+          icon={<FaPlus />}
           color="primary"
           onClick={onSubmit}
         >
-          일정 수정
+          일정 추가
         </Button>
       </Form.ButtonArea>
     </Form>
   );
 };
 
-export default ScheduleForm;
+export default ScheduleCreateForm;

@@ -2,17 +2,15 @@ import { gql, useMutation } from "@apollo/client";
 import { Schedule } from "../models/server/Schedule";
 
 const UPDATE_SCHEDULE = gql`
-  mutation UpdateSchedule(
-    $id: Float!
+  mutation CreateSchedule(
     $title: String!
     $content: String!
     $dueAt: String
     $tags: [String!]!
     $userIds: [Float!]!
   ) {
-    updateSchedule(
+    createSchedule(
       data: {
-        id: $id
         title: $title
         content: $content
         dueAt: $dueAt
@@ -31,11 +29,10 @@ const UPDATE_SCHEDULE = gql`
   }
 `;
 
-export const useUpdateScheduleMutation = () => {
+export const useCreateScheduleMutation = () => {
   return useMutation<
-    { updateSchedule: Schedule },
+    { createSchedule: Schedule },
     {
-      id: number;
       title: string;
       content: string;
       dueAt: string | null;

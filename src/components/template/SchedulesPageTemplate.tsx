@@ -6,20 +6,22 @@ import { FaPlus } from "react-icons/fa";
 interface SchedulesPageTemplateProps {
   tabArea: ReactNode;
   scheduleListArea: ReactNode;
+  onClickCreateButton: () => void;
 }
 
 const SchedulesPageTemplate: FC<SchedulesPageTemplateProps> = ({
-  tabArea: tabContainer,
-  scheduleListArea: scheduleListContainer,
+  tabArea,
+  scheduleListArea,
+  onClickCreateButton,
 }) => {
   return (
     <>
-      {tabContainer}
+      {tabArea}
       <div className={css.containerWrap}>
-        <Button icon={<FaPlus />} color="primary">
+        <Button icon={<FaPlus />} color="primary" onClick={onClickCreateButton}>
           새 일정
         </Button>
-        <div className={css.scheduleListWrap}>{scheduleListContainer}</div>
+        <div className={css.scheduleListWrap}>{scheduleListArea}</div>
       </div>
     </>
   );
