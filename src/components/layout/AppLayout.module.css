@@ -16,4 +16,5 @@
 .container {
   width: var(--base-container-width);
   margin: 0 auto;
+  padding-bottom: 5rem;
 }
