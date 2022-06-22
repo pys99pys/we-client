@@ -8,7 +8,7 @@ interface ScheduleListContainerProps {}
 
 const ScheduleListContainer: FC<ScheduleListContainerProps> = () => {
   const navigate = useNavigate();
-  const { loading, data } = useGetSchedulesQuery();
+  const { data } = useGetSchedulesQuery();
 
   const [toggleScheduleMutate] = useToggleScheduleMutation();
 
