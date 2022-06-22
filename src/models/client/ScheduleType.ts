@@ -1,4 +1,4 @@
-export enum TabDivision {
+export enum ScheduleType {
   TODAY = "TODAY",
   EXPECT = "EXPECT",
   COMPLETE = "COMPLETE",

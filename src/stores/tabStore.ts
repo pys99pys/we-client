@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { TabDivision } from "../models/client/Tab";
+import { ScheduleType } from "../models/client/ScheduleType";
 
-export const selectedTabState = atom<TabDivision>({
+export const selectedTabState = atom<ScheduleType>({
   key: "selectedTabState",
-  default: TabDivision.TODAY,
+  default: ScheduleType.TODAY,
 });

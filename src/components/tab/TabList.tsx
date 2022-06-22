@@ -1,25 +1,25 @@
 import { FC } from "react";
-import { TabDivision } from "../../models/client/Tab";
+import { ScheduleType } from "../../models/client/ScheduleType";
 import css from "./TabList.module.css";
 
 interface TabListProps {
-  selectedTab: TabDivision;
-  onChange: (selectedTab: TabDivision) => void;
+  selectedTab: ScheduleType;
+  onChange: (selectedTab: ScheduleType) => void;
 }
 
 const TabList: FC<TabListProps> = ({ selectedTab, onChange }) => {
   return (
     <ul className={css.TabList}>
-      {Object.keys(TabDivision).map((division) => (
+      {Object.keys(ScheduleType).map((division) => (
         <li
           key={division}
           className={division === selectedTab ? css.active : undefined}
-          onClick={() => onChange(division as TabDivision)}
+          onClick={() => onChange(division as ScheduleType)}
         >
-          {division === TabDivision.ALL && "모든 일정"}
-          {division === TabDivision.TODAY && "오늘 일정"}
-          {division === TabDivision.EXPECT && "예정된 일정"}
-          {division === TabDivision.COMPLETE && "완료한 일정"}
+          {division === ScheduleType.ALL && "모든 일정"}
+          {division === ScheduleType.TODAY && "오늘 일정"}
+          {division === ScheduleType.EXPECT && "예정된 일정"}
+          {division === ScheduleType.COMPLETE && "완료한 일정"}
         </li>
       ))}
     </ul>

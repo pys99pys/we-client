@@ -18,8 +18,6 @@ const GET_SCHEDULE = gql`
 
 export const useGetScheduleQuery = (id: number) => {
   return useQuery<{ getSchedule: Schedule }>(GET_SCHEDULE, {
-    variables: {
-      id,
-    },
+    variables: { id },
   });
 };
