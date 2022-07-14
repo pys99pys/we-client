@@ -32,7 +32,11 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
   };
 
   return (
-    <li className={css.ScheduleItem} onClick={onClickItem}>
+    <li
+      data-color-key={userIds.length === 1 ? userIds[0] % 5 : undefined}
+      className={css.ScheduleItem}
+      onClick={onClickItem}
+    >
       <div className={css.checkboxWrap} onClick={handleClickCheckbox}>
         <div className={css.checkboxIcon}>
           <Icon hoverable color={!!completedAt ? "primary" : "lightGray"}>
