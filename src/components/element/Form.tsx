@@ -2,11 +2,7 @@ import React, { FC, FormEvent, ReactNode } from "react";
 import css from "./Form.module.css";
 
 const ButtonArea: FC<{ children: ReactNode }> = ({ children }) => {
-  return (
-    <div className={css.buttonArea}>
-      <dd>{children}</dd>
-    </div>
-  );
+  return <div className={css.buttonArea}>{children}</div>;
 };
 
 const Row: FC<{ title: string; children: ReactNode }> = ({

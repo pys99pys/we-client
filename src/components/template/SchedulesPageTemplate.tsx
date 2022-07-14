@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
+import { FaCalendarPlus } from "react-icons/fa";
 import Button from "../element/Button";
 import css from "./SchedulesPageTemplate.module.css";
-import { FaPlus } from "react-icons/fa";
 
 interface SchedulesPageTemplateProps {
   tabArea: ReactNode;
@@ -18,7 +18,11 @@ const SchedulesPageTemplate: FC<SchedulesPageTemplateProps> = ({
     <>
       {tabArea}
       <div className={css.containerWrap}>
-        <Button icon={<FaPlus />} color="primary" onClick={onClickCreateButton}>
+        <Button
+          icon={<FaCalendarPlus />}
+          color="primary"
+          onClick={onClickCreateButton}
+        >
           새 일정
         </Button>
         <div className={css.scheduleListWrap}>{scheduleListArea}</div>

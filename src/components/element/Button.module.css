@@ -1,35 +1,53 @@
-.primary {
+.button {
   height: var(--input-button-height-base);
   padding: 0 1rem;
   display: inline-flex;
   align-items: center;
   border: none;
   border-radius: var(--border-radius);
-  transition: background-color 500ms ease;
+  background-color: var(--color-gray7);
+  color: var(--color-gray3);
+  transition: background-color 300ms, color 300ms, opacity 300ms ease;
 }
 
-.Button.primary {
+.button:hover {
+  cursor: pointer;
+}
+
+.button.loading {
+  opacity: 0.8;
+}
+
+.button.primary {
   background-color: var(--color-primary);
   color: var(--color-white);
 }
 
-.Button.primary:hover {
+.button.primary:hover {
   background-color: var(--color-primary-hover);
-  cursor: pointer;
 }
 
-.Button .iconWrap {
+.button.red {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.button.red:hover {
+  background-color: var(--color-red-hover);
+  color: var(--color-white);
+}
+
+.button .iconWrap {
   margin-right: 0.25em;
   transform: translateY(1px);
 }
 
-.Button.large {
+.button.large {
   height: var(--input-button-height-large);
-  padding: 0 1.5rem;
-  font-size: 1.05rem;
+  font-size: 1.025rem;
 }
 
-.Button.large .iconWrap {
+.button.large .iconWrap {
   margin-right: 0.5em;
   transform: translateY(2px);
 }

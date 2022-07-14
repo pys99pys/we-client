@@ -1,23 +1,29 @@
 import { FC } from "react";
-import { FaCheck } from "react-icons/fa";
+import { FaCalendarCheck, FaTrash } from "react-icons/fa";
 import { Form as FormType } from "../../models/client/Form";
 import Form from "../element/Form";
 import Input from "../element/Input";
 import Button from "../element/Button";
-import Radio from "../element/Radio";
+import Checkbox from "../element/Checkbox";
 
 interface ScheduleUpdateFormProps {
   form: FormType;
   errors: Record<keyof FormType, boolean>;
+  updateLoading: boolean;
+  removeLoading: boolean;
   onChange: (key: keyof FormType, value: FormType[keyof FormType]) => void;
   onSubmit: () => void;
+  onRemove: () => void;
 }
 
 const ScheduleUpdateForm: FC<ScheduleUpdateFormProps> = ({
   form,
   errors,
+  updateLoading,
+  removeLoading,
   onChange,
   onSubmit,
+  onRemove,
 }) => {
   return (
     <Form onSubmit={onSubmit}>
@@ -45,35 +51,46 @@ const ScheduleUpdateForm: FC<ScheduleUpdateFormProps> = ({
         />
       </Form.Row>
       <Form.Row title="소유자">
-        <Radio.Group>
-          <Radio
-            checked={form.userIds.length === 2}
-            onClick={() => onChange("userIds", [1, 2])}
-          >
-            함께
-          </Radio>
-          <Radio
-            checked={form.userIds.length === 1 && form.userIds[0] === 1}
-            onClick={() => onChange("userIds", [1])}
-          >
-            윤서
-          </Radio>
-          <Radio
-            checked={form.userIds.length === 1 && form.userIds[0] === 2}
-            onClick={() => onChange("userIds", [2])}
-          >
-            우정
-          </Radio>
-        </Radio.Group>
+        <Checkbox.Group>
+          {[1, 2].map((userId) => (
+            <Checkbox
+              key={userId}
+              checked={form.userIds.includes(userId)}
+              onClick={() =>
+                onChange(
+                  "userIds",
+                  form.userIds.includes(userId)
+                    ? form.userIds.filter((id) => id !== userId)
+                    : form.userIds.concat(userId)
+                )
+              }
+            >
+              {userId === 1 && "윤서"}
+              {userId === 2 && "우정"}
+            </Checkbox>
+          ))}
+        </Checkbox.Group>
       </Form.Row>
       <Form.ButtonArea>
         <Button
           size="large"
-          icon={<FaCheck />}
+          icon={<FaCalendarCheck />}
+          loading={updateLoading}
           color="primary"
           onClick={onSubmit}
         >
-          일정 수정
+          {updateLoading && "수정중..."}
+          {!updateLoading && "일정 수정"}
+        </Button>
+        <Button
+          size="large"
+          icon={<FaTrash />}
+          loading={removeLoading}
+          color="red"
+          onClick={onRemove}
+        >
+          {removeLoading && "삭제중..."}
+          {!removeLoading && "일정 삭제"}
         </Button>
       </Form.ButtonArea>
     </Form>

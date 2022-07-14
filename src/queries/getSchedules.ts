@@ -5,7 +5,7 @@ import { Schedule } from "../models/server/Schedule";
 const GET_SCHEDULES = gql`
   query GetSchedules($type: String!) {
     getSchedules(type: $type) {
-      id
+      _id
       title
       content
       dueAt

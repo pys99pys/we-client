@@ -2,9 +2,9 @@ import { gql, useQuery } from "@apollo/client";
 import { Schedule } from "../models/server/Schedule";
 
 const GET_SCHEDULE = gql`
-  query GetSchedule($id: Float!) {
-    getSchedule(id: $id) {
-      id
+  query GetSchedule($id: String!) {
+    getSchedule(_id: $id) {
+      _id
       title
       content
       dueAt
@@ -16,7 +16,7 @@ const GET_SCHEDULE = gql`
   }
 `;
 
-export const useGetScheduleQuery = (id: number) => {
+export const useGetScheduleQuery = (id: string) => {
   return useQuery<{ getSchedule: Schedule }>(GET_SCHEDULE, {
     variables: { id },
   });

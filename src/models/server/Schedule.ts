@@ -1,5 +1,5 @@
 export interface Schedule {
-  id: number;
+  _id: string;
   createdAt: string;
   dueAt: string | null;
   completedAt: string | null;

@@ -3,7 +3,7 @@ import { Schedule } from "../models/server/Schedule";
 
 const UPDATE_SCHEDULE = gql`
   mutation UpdateSchedule(
-    $id: Float!
+    $id: String!
     $title: String!
     $content: String!
     $dueAt: String
@@ -12,7 +12,7 @@ const UPDATE_SCHEDULE = gql`
   ) {
     updateSchedule(
       data: {
-        id: $id
+        _id: $id
         title: $title
         content: $content
         dueAt: $dueAt
@@ -20,7 +20,7 @@ const UPDATE_SCHEDULE = gql`
         userIds: $userIds
       }
     ) {
-      id
+      _id
       title
       content
       dueAt
@@ -35,7 +35,7 @@ export const useUpdateScheduleMutation = () => {
   return useMutation<
     { updateSchedule: Schedule },
     {
-      id: number;
+      id: string;
       title: string;
       content: string;
       dueAt: string | null;

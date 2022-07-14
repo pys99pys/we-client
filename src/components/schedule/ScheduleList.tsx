@@ -6,8 +6,8 @@ import css from "./ScheduleList.module.css";
 
 interface ScheduleListProps {
   items: Schedule[];
-  onClickCheckbox: (id: number) => void;
-  onClickItem: (id: number) => void;
+  onClickCheckbox: (id: string) => void;
+  onClickItem: (id: string) => void;
 }
 
 const ScheduleList: FC<ScheduleListProps> = ({
@@ -19,14 +19,14 @@ const ScheduleList: FC<ScheduleListProps> = ({
     <ul className={css.ScheduleList}>
       {items.map((item) => (
         <ScheduleItem
-          key={item.id}
+          key={item._id}
           title={item.title}
           tags={item.tags}
           userIds={item.userIds}
           completedAt={item.completedAt}
           dueAt={item.dueAt}
-          onClickCheckbox={() => onClickCheckbox(item.id)}
-          onClickItem={() => onClickItem(item.id)}
+          onClickCheckbox={() => onClickCheckbox(item._id)}
+          onClickItem={() => onClickItem(item._id)}
         />
       ))}
     </ul>

@@ -59,11 +59,13 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
             )}
           </div>
         }
-        <div className={css.tagWrap}>
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </div>
+        {!!tags.length && (
+          <div className={css.tagWrap}>
+            {tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </div>
+        )}
       </div>
       <div className={css.ownerWrap}>
         <OwnerIcon userId={userIds.length === 1 ? userIds[0] : null} />

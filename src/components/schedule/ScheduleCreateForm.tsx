@@ -1,14 +1,15 @@
 import { FC } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaCalendarPlus } from "react-icons/fa";
 import { Form as FormType } from "../../models/client/Form";
 import Form from "../element/Form";
 import Input from "../element/Input";
 import Button from "../element/Button";
-import Radio from "../element/Radio";
+import Checkbox from "../element/Checkbox";
 
 interface ScheduleCreateFormProps {
   form: FormType;
   errors: Record<keyof FormType, boolean>;
+  createLoading: boolean;
   onChange: (key: keyof FormType, value: FormType[keyof FormType]) => void;
   onSubmit: () => void;
 }
@@ -16,6 +17,7 @@ interface ScheduleCreateFormProps {
 const ScheduleCreateForm: FC<ScheduleCreateFormProps> = ({
   form,
   errors,
+  createLoading,
   onChange,
   onSubmit,
 }) => {
@@ -45,35 +47,36 @@ const ScheduleCreateForm: FC<ScheduleCreateFormProps> = ({
         />
       </Form.Row>
       <Form.Row title="소유자">
-        <Radio.Group>
-          <Radio
-            checked={form.userIds.length === 2}
-            onClick={() => onChange("userIds", [1, 2])}
-          >
-            함께
-          </Radio>
-          <Radio
-            checked={form.userIds.length === 1 && form.userIds[0] === 1}
-            onClick={() => onChange("userIds", [1])}
-          >
-            윤서
-          </Radio>
-          <Radio
-            checked={form.userIds.length === 1 && form.userIds[0] === 2}
-            onClick={() => onChange("userIds", [2])}
-          >
-            우정
-          </Radio>
-        </Radio.Group>
+        <Checkbox.Group>
+          {[1, 2].map((userId) => (
+            <Checkbox
+              key={userId}
+              checked={form.userIds.includes(userId)}
+              onClick={() =>
+                onChange(
+                  "userIds",
+                  form.userIds.includes(userId)
+                    ? form.userIds.filter((id) => id !== userId)
+                    : form.userIds.concat(userId)
+                )
+              }
+            >
+              {userId === 1 && "윤서"}
+              {userId === 2 && "우정"}
+            </Checkbox>
+          ))}
+        </Checkbox.Group>
       </Form.Row>
       <Form.ButtonArea>
         <Button
           size="large"
-          icon={<FaPlus />}
+          icon={<FaCalendarPlus />}
+          loading={createLoading}
           color="primary"
           onClick={onSubmit}
         >
-          일정 추가
+          {createLoading && "추가중..."}
+          {!createLoading && "일정 추가"}
         </Button>
       </Form.ButtonArea>
     </Form>

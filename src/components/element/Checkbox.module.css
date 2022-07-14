@@ -1,0 +1,36 @@
+.checkbox {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.checkbox .icon {
+  margin-right: 0.35rem;
+  font-size: 1.5rem;
+  color: var(--color-gray5);
+  transform: translateY(2px);
+  transition: color 300ms ease;
+}
+
+.checkbox.checked .icon {
+  color: var(--color-primary);
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.checkbox:hover .icon {
+  color: var(--color-gray4);
+}
+
+.checkbox.checked:hover .icon {
+  color: var(--color-primary-hover);
+}
+
+.group {
+  display: flex;
+  gap: 1rem;
+}

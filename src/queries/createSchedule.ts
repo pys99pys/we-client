@@ -18,7 +18,7 @@ const UPDATE_SCHEDULE = gql`
         userIds: $userIds
       }
     ) {
-      id
+      _id
       title
       content
       dueAt

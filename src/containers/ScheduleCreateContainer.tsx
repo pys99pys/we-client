@@ -1,15 +1,21 @@
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { useCreateScheduleMutation } from "../queries/createSchedule";
+import { useGetSchedulesQuery } from "../queries/getSchedules";
+import { selectedTabState } from "../stores/tabStore";
+import { getToday } from "../utils/date";
 import { Form } from "../models/client/Form";
 import ScheduleCreateForm from "../components/schedule/ScheduleCreateForm";
 
-interface ScheduleUpdateContainerProps {}
-
-const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
-  const [fetchCreate] = useCreateScheduleMutation();
+const ScheduleUpdateContainer: FC = () => {
+  const navigate = useNavigate();
+  const tab = useRecoilValue(selectedTabState);
+  const { refetch } = useGetSchedulesQuery(tab);
+  const [fetchCreate, { loading: createLoading }] = useCreateScheduleMutation();
 
   const [form, setForm] = useState<Form>({
-    dueAt: new Date().toISOString().substring(0, 10),
+    dueAt: getToday(),
     title: "",
     tags: "",
     userIds: [1, 2],
@@ -28,22 +34,26 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setErrors({
       ...errors,
       title: !form.title,
     });
 
     if (form.title) {
-      fetchCreate({
+      await fetchCreate({
         variables: {
           title: form.title,
           content: "",
           dueAt: form.dueAt || null,
-          tags: form.tags.split(", "),
+          tags: form.tags ? form.tags.split(",") : [],
           userIds: form.userIds,
         },
       });
+
+      await refetch();
+      window.alert("일정이 추가되었습니다.");
+      navigate("/");
     }
   };
 
@@ -51,6 +61,7 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
     <ScheduleCreateForm
       form={form}
       errors={errors}
+      createLoading={createLoading}
       onChange={handleChange}
       onSubmit={handleSubmit}
     />

@@ -13,13 +13,13 @@ const ScheduleListContainer: FC<ScheduleListContainerProps> = () => {
   const tab = useRecoilValue(selectedTabState);
 
   const { data } = useGetSchedulesQuery(tab);
-  const [toggleScheduleMutate] = useToggleScheduleMutation();
+  const [toggleSchedule] = useToggleScheduleMutation();
 
-  const handleComplete = (id: number) => {
-    toggleScheduleMutate({ variables: { id } });
+  const handleComplete = (id: string) => {
+    toggleSchedule({ variables: { id } });
   };
 
-  const handleDetailPage = (id: number) => {
+  const handleDetailPage = (id: string) => {
     navigate(`update/${id}`);
   };
 
