@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateScheduleMutation } from "../queries/createSchedule";
+import { useToast } from "../stores/toastStore";
 import { getToday } from "../utils/date";
 import { Form } from "../models/client/Form";
 import useFetchSchedulesWithTab from "../hooks/useFetchSchedulesWithTab";
@@ -8,6 +9,7 @@ import ScheduleCreateForm from "../components/schedule/ScheduleCreateForm";
 
 const ScheduleUpdateContainer: FC = () => {
   const navigate = useNavigate();
+  const toast = useToast();
   const { refetch } = useFetchSchedulesWithTab();
   const [fetchCreate, { loading: createLoading }] = useCreateScheduleMutation();
 
@@ -49,7 +51,7 @@ const ScheduleUpdateContainer: FC = () => {
       });
 
       await refetch();
-      window.alert("일정이 추가되었습니다.");
+      toast("일정이 추가되었습니다.");
       navigate("/");
     }
   };

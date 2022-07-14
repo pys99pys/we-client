@@ -1,0 +1,7 @@
+.toastProvider {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+}

@@ -1,0 +1,35 @@
+.confirm {
+  width: 320px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px #ccc;
+}
+
+.confirm .messageWrap {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm .buttonWrap {
+  display: flex;
+}
+
+.confirm .buttonWrap button {
+  width: 50%;
+  height: var(--input-button-height-base);
+  border: none;
+  border-top: 1px solid var(--color-gray6);
+  background-color: transparent;
+  transition: background-color 300ms ease;
+}
+
+.confirm .buttonWrap button:last-child {
+  border-left: 1px solid var(--color-gray6);
+}
+
+.confirm .buttonWrap button:hover {
+  background-color: var(--color-gray8);
+  cursor: pointer;
+}

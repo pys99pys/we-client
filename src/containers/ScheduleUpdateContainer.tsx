@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useToast } from "../stores/toastStore";
+import { useConfirm } from "../stores/popupStore";
 import { useGetScheduleQuery } from "../queries/getSchedule";
 import { useUpdateScheduleMutation } from "../queries/updateSchedule";
 import { useRemoveScheduleMutation } from "../queries/removeSchedule";
@@ -11,6 +13,8 @@ interface ScheduleUpdateContainerProps {}
 
 const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
   const navagate = useNavigate();
+  const toast = useToast();
+  const confirm = useConfirm();
   const { id } = useParams<{ id: string }>();
   const { data } = useGetScheduleQuery(id || "");
   const { refetch } = useFetchSchedulesWithTab();
@@ -36,13 +40,15 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
   };
 
   const handleRemove = async () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      await fetchRemove({ variables: { id: id || "" } });
-      await refetch();
+    confirm("정말 삭제하시겠습니까?", {
+      onConfirm: async () => {
+        await fetchRemove({ variables: { id: id || "" } });
+        await refetch();
 
-      window.alert("일정이 삭제되었습니다.");
-      navagate("/");
-    }
+        toast("일정이 삭제되었습니다.");
+        navagate("/");
+      },
+    });
   };
 
   const handleSubmit = async () => {
@@ -63,7 +69,7 @@ const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
         },
       });
 
-      alert("일정이 수정되었습니다.");
+      toast("일정이 수정되었습니다.");
     }
   };
 

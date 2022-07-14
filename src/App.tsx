@@ -4,6 +4,8 @@ import { ApolloProvider } from "@apollo/client";
 import { RecoilRoot } from "recoil";
 import apolloClient from "./apollo-client";
 import AppLayout from "./components/layout/AppLayout";
+import ToastProvider from "./components/privider/ToastProvider";
+import PopupProvider from "./components/privider/PopupProvider";
 import SchedulesPage from "./pages/SchedulesPage";
 import ScheduleCreatePage from "./pages/ScheduleCreatePage";
 import ScheduleUpdatePage from "./pages/ScheduleUpdatePage";
@@ -12,6 +14,8 @@ function App() {
   return (
     <ApolloProvider client={apolloClient}>
       <RecoilRoot>
+        <ToastProvider />
+        <PopupProvider />
         <BrowserRouter>
           <AppLayout>
             <Routes>
