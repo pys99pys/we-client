@@ -1,17 +1,14 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import { useCreateScheduleMutation } from "../queries/createSchedule";
-import { useGetSchedulesQuery } from "../queries/getSchedules";
-import { selectedTabState } from "../stores/tabStore";
 import { getToday } from "../utils/date";
 import { Form } from "../models/client/Form";
+import useFetchSchedulesWithTab from "../hooks/useFetchSchedulesWithTab";
 import ScheduleCreateForm from "../components/schedule/ScheduleCreateForm";
 
 const ScheduleUpdateContainer: FC = () => {
   const navigate = useNavigate();
-  const tab = useRecoilValue(selectedTabState);
-  const { refetch } = useGetSchedulesQuery(tab);
+  const { refetch } = useFetchSchedulesWithTab();
   const [fetchCreate, { loading: createLoading }] = useCreateScheduleMutation();
 
   const [form, setForm] = useState<Form>({

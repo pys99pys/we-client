@@ -1,22 +1,19 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import { useGetScheduleQuery } from "../queries/getSchedule";
-import { useGetSchedulesQuery } from "../queries/getSchedules";
 import { useUpdateScheduleMutation } from "../queries/updateSchedule";
 import { useRemoveScheduleMutation } from "../queries/removeSchedule";
-import { selectedTabState } from "../stores/tabStore";
 import { Form } from "../models/client/Form";
 import ScheduleForm from "../components/schedule/ScheduleUpdateForm";
+import useFetchSchedulesWithTab from "../hooks/useFetchSchedulesWithTab";
 
 interface ScheduleUpdateContainerProps {}
 
 const ScheduleUpdateContainer: FC<ScheduleUpdateContainerProps> = () => {
   const navagate = useNavigate();
-  const tab = useRecoilValue(selectedTabState);
   const { id } = useParams<{ id: string }>();
   const { data } = useGetScheduleQuery(id || "");
-  const { refetch } = useGetSchedulesQuery(tab);
+  const { refetch } = useFetchSchedulesWithTab();
   const [fetchUpdate, { loading: updateLoading }] = useUpdateScheduleMutation();
   const [fetchRemove, { loading: removeLoading }] = useRemoveScheduleMutation();
 
