@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { toastState, useToast } from "../../stores/toastStore";
+import { toastState } from "../../stores/toastStore";
 import Toast from "../popup/Toast";
 import css from "./ToastProvider.module.css";
 

@@ -24,17 +24,17 @@ const Toast: FC<ToastProps> = ({ onClose, children }) => {
       if (ref.current) {
         ref.current.classList.add(css.active);
       }
-    }, 50);
+    }, 0);
 
     setTimeout(() => {
       if (ref.current) {
         ref.current.classList.remove(css.active);
       }
-    }, 50 + 5000);
+    }, 5000);
 
     setTimeout(() => {
       onClose();
-    }, 50 + 5000 + 300);
+    }, 5000 + 300);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
